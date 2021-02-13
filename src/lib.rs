@@ -68,6 +68,18 @@ impl<T: AsRef<str>> PartialEq<T> for ByteString {
     }
 }
 
+impl PartialEq<ByteString> for str {
+    fn eq(&self, other: &ByteString) -> bool {
+        self == &*other
+    }
+}
+
+impl PartialEq<ByteString> for String {
+    fn eq(&self, other: &ByteString) -> bool {
+        &*self == &*other
+    }
+}
+
 impl AsRef<[u8]> for ByteString {
     fn as_ref(&self) -> &[u8] {
         self.0.as_ref()
